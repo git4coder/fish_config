@@ -2,6 +2,7 @@ function location --description "限制了长度的 $PWD，中间用 ... 代替�
     set _prefix_len 7
     set _suffix_len 10
     set _pwd (string replace -r '^'"$HOME"'($|/)' '~$1' $PWD)
+    set _pwd (string replace -r '^'"/mnt/[a-zA-Z]/Users/$USER"'($|/)' '≈$1' $_pwd) # wsl.exe 下Win用户的目录用双波浪“≈”代替
     set _pwd_len (string length $_pwd)
     set _divider '…'
     set _divider_len (string length $_divider)
