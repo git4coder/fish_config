@@ -13,8 +13,8 @@ function evaluate --description 'Reset App Evaluation'
       return
     case 'phpstorm'
       killall phpstorm
-      rm -rf ~/Library/Application\ Support/JetBrains/PhpStorm*/eval
-      sed -i /name=\"evl/d ~/Library/Application\ Support/JetBrains/PhpStorm*/options/other.xml
+      rm -rf ~/Library/Application\ Support/JetBrains/PhpStorm*/eval > /dev/null 2>&1
+      gsed -i /name=\"evl/d ~/Library/Application\ Support/JetBrains/PhpStorm*/options/other.xml
       return
     case 'ubar'
       rm -f ~/Library/Preferences/ca.brawer.uBar.plist
