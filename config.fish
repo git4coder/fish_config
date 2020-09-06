@@ -41,5 +41,8 @@ alias vs="cd ~/Homestead/ && vagrant up && vagrant ssh && cd -"
 alias vh="cd ~/Homestead/ && vagrant halt && cd -"
 alias vr="cd ~/Homestead/ && vagrant reload --provision && cd -"
 
-set -gx PATH $HOME/.bin $PATH
+set -gx PATH $PATH $HOME/.bin ~/Applications/flutter/bin
+
+set -x PUB_HOSTED_URL           https://pub.flutter-io.cn
+set -x FLUTTER_STORAGE_BASE_URL https://storage.flutter-io.cn
 
