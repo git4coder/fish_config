@@ -1,7 +1,8 @@
 # 判断是否是git仓库的工具函数
 function is_git_repo --description 'Check if directory is a repository'
     test -d .git
-    or command git rev-parse --git-dir >/dev/null ^/dev/null
+    #or command git rev-parse --git-dir >/dev/null ^/dev/null
+    or command git rev-parse --git-dir >/dev/null 2>/dev/null
 end
 
 # PS1

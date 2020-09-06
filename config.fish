@@ -36,10 +36,14 @@ alias gf="git fetch"
 alias gr="git remote -v"
 alias gm="git merge"
 alias ys="yarn serve"
-alias yb="yarn build"
 alias vs="cd ~/Homestead/ && vagrant up && vagrant ssh && cd -"
 alias vh="cd ~/Homestead/ && vagrant halt && cd -"
 alias vr="cd ~/Homestead/ && vagrant reload --provision && cd -"
 
-set -gx PATH $HOME/.bin $PATH
+set -x  ANDROID_HOME $HOME/Library/Android/sdk
+set -gx PATH $PATH $HOME/.bin ~/Applications/flutter/bin $ANDROID_HOME/tools $ANDROID_HOME/tools/bin $ANDROID_HOME/platform-tools
+#set -gx PATH $PATH $HOME/.bin ~/Applications/flutter/bin
+
+set -x PUB_HOSTED_URL           https://pub.flutter-io.cn
+set -x FLUTTER_STORAGE_BASE_URL https://storage.flutter-io.cn
 
