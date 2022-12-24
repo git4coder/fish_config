@@ -40,23 +40,25 @@ function yb --description 'yarn build sth.'
       end
     end
     # 打包
-    tar -zcvf \
-      $package_name \
-      $folder \
-      ;and open -R ./$package_name
-      #;and sleep 2
-      #;and osascript -e '
-      #  tell application "System Events" to tell process "Finder"
-      #    set frontmost to true
-      #    tell menu bar item "文件" of menu bar 1
-      #      #click menu item "共享" of menu "文件"
-      #      #click menu item "发送到微信" of menu "共享" of menu item "共享" of menu "文件"
-      #      tell menu item "共享" of menu "文件"
-      #        click menu item "发送到微信" of menu "共享"
-      #      end tell
-      #    end tell
-      #  end tell
-      #'
+    if set --query argv[2]
+      tar -zcvf \
+        $package_name \
+        $folder \
+        ;and open -R ./$package_name
+        #;and sleep 2
+        #;and osascript -e '
+        #  tell application "System Events" to tell process "Finder"
+        #    set frontmost to true
+        #    tell menu bar item "文件" of menu bar 1
+        #      #click menu item "共享" of menu "文件"
+        #      #click menu item "发送到微信" of menu "共享" of menu item "共享" of menu "文件"
+        #      tell menu item "共享" of menu "文件"
+        #        click menu item "发送到微信" of menu "共享"
+        #      end tell
+        #    end tell
+        #  end tell
+        #'
+    end
     # 删除待打包的目录
     if test $status -eq 0
       set --function full_folder_path $PWD"/"$folder
