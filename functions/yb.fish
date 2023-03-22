@@ -61,6 +61,7 @@ function yb --description 'yarn build sth.'
     end
     # 删除待打包的目录
     if test $status -eq 0
+      # 删除编译后的目录
       set --function full_folder_path $PWD"/"$folder
       echo (set_color yellow)"dist folder: "(string replace -r '^'"$HOME"'($|/)' '~$1' $full_folder_path)(set_color normal)
       read be_delete -ft -c "yes" -p "echo (set_color yellow)'delete '$folder' folder[yes/no]'(set_color normal)'> '"
@@ -70,7 +71,19 @@ function yb --description 'yarn build sth.'
           echo (set_color green)"folder "$folder" deleted"(set_color normal)
         end
       else
-        echo (set_color yellow)"Command DELETE is canceled"(set_color normal)
+        echo (set_color yellow)"Command DELETE folder is canceled"(set_color normal)
+      end
+      # 删除打包后的压缩包
+      set --function full_package_path $PWD"/"$package_name
+      echo (set_color yellow)"package: "(string replace -r '^'"$HOME"'($|/)' '~$1' $full_package_path)(set_color normal)
+      read be_delete -ft -c "yes" -p "echo (set_color yellow)'delete '$package_name' [yes/no]'(set_color normal)'> '"
+      if test "$be_delete" = "yes"
+        rm -rf $full_package_path
+        if test $status -eq 0
+          echo (set_color green)"package "$package_name" deleted"(set_color normal)
+        end
+      else
+        echo (set_color yellow)"Command DELETE package is canceled"(set_color normal)
       end
     end
   else

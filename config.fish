@@ -22,7 +22,6 @@ alias nb="npm run build"
 alias gp="git pull"
 alias gs="git status"
 alias gb="git branch -a"
-alias go="git checkout"
 alias god="git checkout develop"
 alias gom="git checkout master"
 alias ga="git add"
@@ -40,6 +39,8 @@ alias ys="yarn serve"
 alias vs="cd ~/Homestead/ && vagrant up && vagrant ssh && cd -"
 alias vh="cd ~/Homestead/ && vagrant halt && cd -"
 alias vr="cd ~/Homestead/ && vagrant reload --provision && cd -"
+alias xp="VBoxManage startvm e82d8b13-fca2-4523-943e-c7564e26b6c4"
+alias win7="VBoxManage startvm bc76aad9-ad97-470a-9f5a-3ce2f164a79d"
 
 set -x  ANDROID_HOME $HOME/Library/Android/sdk
 set -gx PATH $PATH $HOME/.bin ~/Applications/flutter/bin $ANDROID_HOME/tools $ANDROID_HOME/tools/bin $ANDROID_HOME/platform-tools
@@ -48,3 +49,8 @@ set -gx PATH $PATH $HOME/.bin ~/Applications/flutter/bin $ANDROID_HOME/tools $AN
 set -x PUB_HOSTED_URL           https://pub.flutter-io.cn
 set -x FLUTTER_STORAGE_BASE_URL https://storage.flutter-io.cn
 
+# https://github.com/jorgebucaran/nvm.fish
+set --universal nvm_default_version v14
+set --universal nvm_default_packages yarn
+
+eval (gdircolors -c ~/.dir_colors)
