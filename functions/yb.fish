@@ -39,6 +39,8 @@ function yb --description 'yarn build sth.'
         return
       end
     end
+    # 暂停一下，用于手动修改 build 后的 dist
+    read -p "echo Please modify the compilation and press any key to packaging ..."
     # 打包
     if set --query argv[2]
       tar -zcvf \
@@ -58,6 +60,20 @@ function yb --description 'yarn build sth.'
         #    end tell
         #  end tell
         #'
+      if test $status -eq 0
+        # 删除打包后的压缩包
+        set --function full_package_path $PWD"/"$package_name
+        echo (set_color yellow)"package: "(string replace -r '^'"$HOME"'($|/)' '~$1' $full_package_path)(set_color normal)
+        read be_delete -ft -c "yes" -p "echo (set_color yellow)'delete '$package_name' [yes/no]'(set_color normal)'> '"
+        if test "$be_delete" = "yes"
+          rm -rf $full_package_path
+          if test $status -eq 0
+            echo (set_color green)"package "$package_name" deleted"(set_color normal)
+          end
+        else
+          echo (set_color yellow)"Command DELETE package is canceled"(set_color normal)
+        end
+      end
     end
     # 删除待打包的目录
     if test $status -eq 0
@@ -72,18 +88,6 @@ function yb --description 'yarn build sth.'
         end
       else
         echo (set_color yellow)"Command DELETE folder is canceled"(set_color normal)
-      end
-      # 删除打包后的压缩包
-      set --function full_package_path $PWD"/"$package_name
-      echo (set_color yellow)"package: "(string replace -r '^'"$HOME"'($|/)' '~$1' $full_package_path)(set_color normal)
-      read be_delete -ft -c "yes" -p "echo (set_color yellow)'delete '$package_name' [yes/no]'(set_color normal)'> '"
-      if test "$be_delete" = "yes"
-        rm -rf $full_package_path
-        if test $status -eq 0
-          echo (set_color green)"package "$package_name" deleted"(set_color normal)
-        end
-      else
-        echo (set_color yellow)"Command DELETE package is canceled"(set_color normal)
       end
     end
   else
