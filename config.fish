@@ -19,7 +19,7 @@ alias ra="react-native run-android"
 alias ri="react-native run-ios --simulator 'iPhone 7'"
 alias ns="npm start"
 alias nb="npm run build"
-alias gp="git pull"
+alias gp="git pull --rebase"
 alias gs="git status"
 alias gb="git branch -a"
 alias god="git checkout develop"
@@ -28,7 +28,7 @@ alias ga="git add"
 alias gc="git commit"
 alias gca="git commit --amend"
 alias gac="git add . && git commit -m"
-alias gu="git push"
+alias gu="git pull --rebase && git push"
 alias guf="git push -f"
 alias gl="git lg1"
 alias gf="git fetch"
@@ -45,7 +45,11 @@ alias bf="sudo bclm write 100"
 alias b7="sudo bclm write 75"
 alias weekly="git log --author=yanghefeng --pretty=format:'%cd - %s' --date='format-local:%Y/%m/%d' --abbrev-commit --since=6.days --reverse"
 alias du=gdu
+alias sail='sh vendor/bin/sail'
+alias systemctl='brew services'
+alias dqr="pngpaste - | zbarimg -q PNG:- | awk -F 'QR-Code:' '{print $2}'"
 
+#set -x  LANG en_US.UTF-8
 set -x  ANDROID_HOME $HOME/Library/Android/sdk
 set -gx PATH $PATH $HOME/.bin $ANDROID_HOME/tools $ANDROID_HOME/tools/bin $ANDROID_HOME/platform-tools
 #set -gx PATH $PATH $HOME/.bin ~/Applications/flutter/bin
